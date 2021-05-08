@@ -2,7 +2,7 @@
 // Created by Centauria V. CHEN on 2021/5/8.
 //
 
-#include <iostream>
+#include "termcolor/termcolor.hpp"
 
 extern "C" {
 #include "extract_gpu_info.h"
@@ -13,7 +13,7 @@ using namespace std;
 void show_gpu_processes(struct device_info *dev_infos, size_t num_devices) {
     cout << "GPU count: " << num_devices << endl;
     for (unsigned int i = 0; i < num_devices; i++) {
-        cout << "[GPU " << i << "]" << endl;
+        cout << termcolor::green << "[GPU " << i << "]" << termcolor::reset << endl;
         auto n_compute = dev_infos[i].num_compute_procs;
         auto n_graphic = dev_infos[i].num_graphical_procs;
         cout << "Compute process count: " << n_compute << endl;

@@ -12,7 +12,7 @@ add_executable(gpupid gpupid/main.cpp)
 
 target_link_libraries(GPUInfo ${NVML_LIBRARIES})
 target_link_libraries(PhoenixKiller crypto argparse termcolor GPUInfo)
-target_link_libraries(gpupid GPUInfo)
+target_link_libraries(gpupid GPUInfo termcolor)
 
 install(TARGETS PhoenixKiller gpupid
         RUNTIME DESTINATION bin)
