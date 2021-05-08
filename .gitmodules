@@ -1,0 +1,6 @@
+[submodule "3rd-party/argparse"]
+	path = 3rd-party/argparse
+	url = https://github.com/p-ranav/argparse
+[submodule "3rd-party/termcolor"]
+	path = 3rd-party/termcolor
+	url = https://github.com/ikalnytskyi/termcolor
