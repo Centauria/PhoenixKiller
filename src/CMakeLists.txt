@@ -16,3 +16,5 @@ target_link_libraries(gpupid GPUInfo)
 
 install(TARGETS PhoenixKiller gpupid
         RUNTIME DESTINATION bin)
+
+install(SCRIPT InstallService.cmake)
