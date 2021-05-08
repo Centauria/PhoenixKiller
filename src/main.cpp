@@ -16,11 +16,6 @@ int main(int argc, char *argv[]) {
                             "WARNING: This program only detects the location by default!\n"
                             "Use --cleanup option for automatic cleanup. (require sudo)\n"
                             "And DO NOT FORGET to cleanup your /var/spool/cron/crontabs/root");
-    program.add_argument("--complete")
-            .default_value(false)
-            .implicit_value(true)
-            .help("Use complete searching method.\n"
-                  "Only searches for hidden fake \"python\" executors");
     program.add_argument("--with-md5-check")
             .default_value(false)
             .implicit_value(true)
