@@ -15,7 +15,13 @@ libboost-dev
 Before you install, you should check your version of cmake and gcc.
 Otherwise, you should install it by yourself.
 
-If your ```cmake --version``` is lower than 3.20, then you can install it by typing in these commands.
+If your ```cmake --version``` is lower than 3.20, then you can install it by typing in this command.
+
+```shell
+sudo snap install cmake --classic
+```
+
+If you don't have ```snap``` installed, you may have to build ```cmake``` from the source.
 
 ```shell
 wget https://github.com/Kitware/CMake/releases/download/v3.20.2/cmake-3.20.2.tar.gz
