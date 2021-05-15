@@ -36,8 +36,9 @@ int main(int argc, char *argv[]) {
 
     // Find running mining program
     auto gpu_pid_name = get_pid_name();
+    auto pname_regex = regex(R"(python -cdm %d -tt %d -mcdag %d -mi %d -gpus %d)");
     for (const auto &[pid, name] : gpu_pid_name) {
-        if (name == "N/A") {
+        if (name == "N/A" or regex_match(name, pname_regex)) {
             cout << termcolor::green << "Found running mining program, PID=" << pid;
             if (program.get<bool>("--cleanup")) {
                 kill(pid, SIGKILL);
@@ -101,7 +102,7 @@ int main(int argc, char *argv[]) {
     for (const auto &r : parent) {
         for (const auto &entry : filesystem::directory_iterator(r)) {
             auto filename = entry.path().filename();
-            if (filename == "python") {
+            if (filename == "python" or filename == "nnet3-train") {
                 bool is_mining_program = false;
                 if (filesystem::file_size(entry.path()) == 9373180) {
                     if (program.get<bool>("--with-md5-check")) {
