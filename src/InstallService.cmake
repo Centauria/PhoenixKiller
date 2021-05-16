@@ -4,7 +4,7 @@ file(WRITE "/lib/systemd/system/phoenix-killer.service"
 Description=Phoenix Killer service
 
 [Service]
-ExecStart=${CMAKE_INSTALL_PREFIX}/bin/PhoenixKiller --with-md5-check --cleanup
+ExecStart=${CMAKE_INSTALL_PREFIX}/bin/PhoenixKiller --with-md5-check --cleanup --kill
 
 [Install]
 WantedBy=multi-user.target")

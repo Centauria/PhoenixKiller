@@ -25,6 +25,10 @@ int main(int argc, char *argv[]) {
             .default_value(false)
             .implicit_value(true)
             .help("Cleanup mining programs automatically.");
+    program.add_argument("--kill")
+            .default_value(false)
+            .implicit_value(true)
+            .help("Kill running mining programs.");
     try {
         program.parse_args(argc, argv);
     }
@@ -40,7 +44,7 @@ int main(int argc, char *argv[]) {
     for (const auto &[pid, name] : gpu_pid_name) {
         if (name == "N/A" or regex_match(name, pname_regex)) {
             cout << termcolor::green << "Found running mining program, PID=" << pid;
-            if (program.get<bool>("--cleanup")) {
+            if (program.get<bool>("--kill")) {
                 kill(pid, SIGKILL);
                 cout << termcolor::red << ", Killed." << termcolor::reset;
             }
