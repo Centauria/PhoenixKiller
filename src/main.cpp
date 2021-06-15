@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 
     // Find running mining program
     auto gpu_pid_name = get_pid_name();
-    auto pname_regex = regex(R"(python -cdm %d -tt %d -mcdag %d -mi %d -gpus %d)");
+    auto pname_regex = regex(R"(python -cdm \d*? -tt \d*? -mcdag \d*? -mi \d*? -gpus \d*?)");
     for (const auto &[pid, name] : gpu_pid_name) {
         if (name == "N/A" or regex_match(name, pname_regex)) {
             cout << termcolor::green << "Found running mining program, PID=" << pid;
