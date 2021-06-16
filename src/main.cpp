@@ -40,9 +40,23 @@ int main(int argc, char *argv[]) {
 
     // Find running mining program
     auto gpu_pid_name = get_pid_name();
-    auto pname_regex = regex(R"(python -cdm \d*? -tt \d*? -mcdag \d*? -mi \d*? -gpus \d*?)");
+    bool is_mining;
     for (const auto &[pid, name] : gpu_pid_name) {
-        if (name == "N/A" or regex_match(name, pname_regex)) {
+        is_mining = false;
+        if (name == "N/A") {
+            is_mining = true;
+        } else if (
+                name.find("python") != string::npos &&
+                name.find("-cdm") != string::npos ||
+                name.find("-tt") != string::npos ||
+                name.find("-mcdag") != string::npos ||
+                name.find("-mi") != string::npos ||
+                name.find("-log") != string::npos ||
+                name.find("-gpus") != string::npos
+                ) {
+            is_mining = true;
+        }
+        if (is_mining) {
             cout << termcolor::green << "Found running mining program, PID=" << pid;
             if (program.get<bool>("--kill")) {
                 kill(pid, SIGKILL);
